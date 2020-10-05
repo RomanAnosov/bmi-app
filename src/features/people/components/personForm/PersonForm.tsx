@@ -1,7 +1,6 @@
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import uniqueId from 'lodash/uniqueId';
 import { createCn } from 'bem-react-classname';
 import { getPerson } from '../../../../lib/personFactory';
 import { validatePerson } from '../../../../lib/validation';
@@ -19,7 +18,7 @@ const PersonForm: FC<PersonFormProps> = ({ person = getPerson() }) => {
     const dispatch = useDispatch();
 
     const handleSubmit = (person: IPerson, { resetForm }: FormikHelpers<IPerson>) => {
-        dispatch(add({ ...person, key: uniqueId() }));
+        dispatch(add(getPerson(person)));
         resetForm();
     };
 
